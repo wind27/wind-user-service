@@ -22,7 +22,7 @@
     <dubbo:application name="wind-user-service"/>
     <dubbo:registry address="zookeeper://zk_server:2181"/>
 
-    <dubbo:service interface="com.wind.user.service.IUserService" ref="userService"
+    <dubbo:service interface="com.wind.auth.service.IUserService" ref="userService"
                    version="2.0.0" timeout="5000" retries="3"/>
     <!--<dubbo:application name="${dubbo.provider.application.name}"/>
     <dubbo:registry address="${dubbo.registry.address}"/>

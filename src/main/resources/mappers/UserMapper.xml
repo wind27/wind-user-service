@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.wind.user.model.User">
-    <resultMap id="userResultMap" type="com.wind.user.model.User">
+<mapper namespace="com.wind.auth.model.User">
+    <resultMap id="userResultMap" type="com.wind.auth.model.User">
         <result column="id" jdbcType="BIGINT" property="id"/>
         <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="realname" jdbcType="VARCHAR" property="realname"/>
         <result column="salt" jdbcType="VARCHAR" property="salt"/>
         <result column="password" jdbcType="VARCHAR" property="password"/>
         <result column="status" jdbcType="TINYINT" property="status"/>
@@ -14,15 +15,16 @@
         <result column="email" jdbcType="VARCHAR" property="email"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.wind.user.model.User">
+    <insert id="insert" parameterType="com.wind.auth.model.User">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into user (username, salt, password,
+        insert into user (username, realname, salt, password,
         status, create_time, update_time,
         mobile, idcard, email
         )
-        values (#{username,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+        values (#{username,jdbcType=VARCHAR}, #{realname,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR},
         #{status,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
         #{mobile,jdbcType=VARCHAR}, #{idcard,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}
         )
@@ -31,7 +33,7 @@
 
     <select id="findById" parameterType="long" resultMap="userResultMap">
         select
-          id, username, salt, status, create_time, update_time, mobile, idcard, email
+        id, username, realname, salt, status, create_time, update_time, mobile, idcard, email
         from user
         <where>
             id = #{id}
@@ -39,11 +41,11 @@
     </select>
 
     <select id="findByUsername" parameterType="String" resultMap="userResultMap">
-      select
-        id, username, salt, password, status, create_time, update_time, mobile, idcard, email
-      from user
-      <where>
-          username = #{username}
-      </where>
+        select
+        id, username, realname, salt, password, status, create_time, update_time, mobile, idcard, email
+        from user
+        <where>
+            username = #{username}
+        </where>
     </select>
 </mapper>

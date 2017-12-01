@@ -2,8 +2,8 @@ package com.wind.user.dao;
 
 
 
+import com.wind.auth.model.Permission;
 import com.wind.dao.IBaseDao;
-import com.wind.user.model.Permission;
 
 import java.util.List;
 

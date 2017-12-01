@@ -1,9 +1,9 @@
 package com.wind.user.dao.impl;
 
 import com.wind.annotation.DAO;
+import com.wind.auth.model.User;
 import com.wind.dao.impl.BaseDao;
 import com.wind.user.dao.IUserDao;
-import com.wind.user.model.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.Map;
  *
  * @author qianchun 17/7/13
  **/
-@DAO(catalog = "user")
+@DAO(catalog = "wind_auth")
 @Repository
 public class UserDao extends BaseDao<User, Long> implements IUserDao {
     private static final String namespace = User.class.getName();

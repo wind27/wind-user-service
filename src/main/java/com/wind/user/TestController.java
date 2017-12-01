@@ -1,10 +1,18 @@
 package com.wind.user;
 
+import com.alibaba.fastjson.JSON;
+import com.wind.auth.model.App;
+import com.wind.common.Status;
+import com.wind.user.service.impl.AppService;
+import com.wind.utils.JsonResponseUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 /**
  * TestController
@@ -13,12 +21,21 @@ import javax.servlet.http.HttpServletRequest;
  **/
 @RestController
 public class TestController {
-    @Value("${user.jdbc.driverClassName:test_abc}")
-    private String driverName;
+    @Autowired
+    private AppService appService;
 
-    @RequestMapping("consumer")
+    @RequestMapping("app/save")
     public String hello(HttpServletRequest request) {
-        System.out.println("_--------------------_:driverName:"+driverName);
-        return "consumer";
+
+        App app = new App();
+
+        app.setName("用户管理");
+        app.setHomePageUrl("wind.com");
+        app.setStatus(Status.ENABLED.getValue());
+        app.setCreateTime(new Date());
+        app.setUpdateTime(new Date());
+
+        app = appService.save(app);
+        return JsonResponseUtil.ok(app);
     }
 }

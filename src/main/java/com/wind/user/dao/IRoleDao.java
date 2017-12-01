@@ -1,8 +1,8 @@
 package com.wind.user.dao;
 
 
+import com.wind.auth.model.Role;
 import com.wind.dao.IBaseDao;
-import com.wind.user.model.Role;
 
 import java.util.List;
 

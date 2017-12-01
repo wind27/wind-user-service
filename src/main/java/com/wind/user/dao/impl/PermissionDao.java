@@ -1,9 +1,9 @@
 package com.wind.user.dao.impl;
 
 import com.wind.annotation.DAO;
+import com.wind.auth.model.Permission;
 import com.wind.dao.impl.BaseDao;
 import com.wind.user.dao.IPermissionDao;
-import com.wind.user.model.Permission;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
  *
  * @author qianchun 17/7/13
  **/
-@DAO(catalog = "user")
+@DAO(catalog = "wind_auth")
 @Repository
 public class PermissionDao extends BaseDao<Permission, Long> implements IPermissionDao {
     private static final String namespace = Permission.class.getName();

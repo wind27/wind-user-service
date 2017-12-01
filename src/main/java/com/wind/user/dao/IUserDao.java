@@ -1,7 +1,7 @@
 package com.wind.user.dao;
 
+import com.wind.auth.model.User;
 import com.wind.dao.IBaseDao;
-import com.wind.user.model.User;
 
 import java.util.List;
 import java.util.Map;
